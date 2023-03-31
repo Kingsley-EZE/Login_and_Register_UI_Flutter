@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import '../constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'components/google_button.dart';
-import 'components/password_input_field.dart';
-import 'components/custom_input_field.dart';
-import 'components/custom_button.dart';
-import 'components/custom_divider.dart';
+import '../components/google_button.dart';
+import '../components/password_input_field.dart';
+import '../components/custom_input_field.dart';
+import '../components/custom_button.dart';
+import '../components/custom_divider.dart';
+import 'login_screen.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _RegisterScreenState extends State<RegisterScreen> {
+
   bool isPasswordVisible = false;
   bool isChecked = false;
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,22 +38,36 @@ class _MyHomePageState extends State<MyHomePage> {
               const Padding(
                 padding: EdgeInsets.only(top: 16.0, left: 16.0),
                 child: Text(
-                  'Login',
+                  'Create your account',
                   style: kTitleTextStyle,
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.only(left: 16.0, top: 10.0),
                 child: Text(
-                  'Welcome back! Please enter details',
+                  'Registration is fast and free',
                   style: kSubTitleTextStyle,
                 ),
               ),
-              GoogleButton(),
+              GoogleButton(
+                buttonText: 'Register with Google',
+              ),
               CustomDivider(),
+              BuildCustomInputField(
+                labelText: 'Enter full name',
+                inputType: TextInputType.name,
+                marginTop: 42.0,
+                marginLeft: 16.0,
+                marginRight: 16.0,
+                marginBottom: 20.0,
+              ),
               BuildCustomInputField(
                 labelText: 'Email',
                 inputType: TextInputType.emailAddress,
+                marginTop: 0.0,
+                marginLeft: 16.0,
+                marginRight: 16.0,
+                marginBottom: 20.0,
               ),
               BuildPasswordInputField(
                 isPressed: () {
@@ -58,7 +76,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   });
                 },
                 isPasswordVisible: isPasswordVisible,
-                labelText: 'Password',
+                labelText: 'Create a password',
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -74,7 +92,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         },
                       ),
                       const Text(
-                        'Remember me for 30 days',
+                        'By registering, I have read and agree to the Terms\nand Privacy Policy',
                         style: TextStyle(
                           fontSize: 15.0,
                           fontWeight: FontWeight.w400,
@@ -83,23 +101,10 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                     ],
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(
-                      right: 16.0,
-                    ),
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF007AFF),
-                      ),
-                    ),
-                  ),
                 ],
               ),
               CustomMainButton(
-                buttonText: 'Log in',
+                buttonText: 'Register',
                 isPressed: () {
 
                 },
@@ -110,24 +115,29 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
-                      'Don\'t have an account?',
+                  children: [
+                    const Text(
+                      'Already have an account?',
                       style: TextStyle(
                         fontSize: 16.0,
                         color: Color(0xFF727272),
                         fontWeight: FontWeight.w400,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 10.0,
                     ),
-                    Text(
-                      'Register',
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.w500,
-                        color: Color(0xFF007AFF),
+                    GestureDetector(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: const Text(
+                        'Log in',
+                        style: TextStyle(
+                          fontSize: 16.0,
+                          fontWeight: FontWeight.w500,
+                          color: Color(0xFF007AFF),
+                        ),
                       ),
                     )
                   ],
@@ -143,5 +153,3 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
-
-

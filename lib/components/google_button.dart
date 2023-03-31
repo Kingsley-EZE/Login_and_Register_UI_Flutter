@@ -4,9 +4,10 @@ import 'package:flutter_svg/svg.dart';
 
 
 class GoogleButton extends StatelessWidget {
-  const GoogleButton({
-    super.key,
-  });
+
+  GoogleButton({required this.buttonText});
+
+  final String buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -22,8 +23,8 @@ class GoogleButton extends StatelessWidget {
         children: [
           SvgPicture.asset('assets/google_icon.svg'),
           const SizedBox(width: 10.0,),
-          const Text(
-            'Log in with Google',
+           Text(
+            buttonText,
             style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.w400,
